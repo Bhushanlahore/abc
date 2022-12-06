@@ -1,0 +1,129 @@
+package com.yash.pms.model.product;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "productcategory")
+public class ProductCategory {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long pcId;
+	private String name;
+	private String description;
+	private String image;
+	private boolean isDeleted = false;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Category category;
+	
+	@OneToMany(mappedBy = "productcategory", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Set<Product> products = new HashSet<>();
+	
+	public ProductCategory() {
+		
+	}
+
+	
+	
+	
+	public Long getPcId() {
+		return pcId;
+	}
+
+
+
+
+	public void setPcId(Long pcId) {
+		this.pcId = pcId;
+	}
+
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+
+	public String getImage() {
+		return image;
+	}
+
+
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+
+
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+}

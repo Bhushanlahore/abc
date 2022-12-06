@@ -1,0 +1,23 @@
+package com.yash.pms.services;
+
+import java.util.Set;
+
+import com.yash.pms.model.product.ProductCategory;
+
+public interface ProductCategoryService {
+		
+	//add product category
+	public ProductCategory addProductCategory(ProductCategory productCategory) throws Exception;
+	
+	//update product category
+	public ProductCategory updateCategory(ProductCategory productCategory);
+	
+	//get all product categories
+	public Set<ProductCategory> getProductCategories();
+	
+	//get product category by id
+	public ProductCategory getProductCategory(Long pcId);
+	
+	//delete product category by id
+	public void deleteProductCategory(Long pcId);
+}
